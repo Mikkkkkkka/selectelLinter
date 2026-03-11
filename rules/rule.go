@@ -3,6 +3,9 @@ package rules
 import (
 	"go/ast"
 
+	slogrules "selectelLinter/rules/slog"
+	zaprules "selectelLinter/rules/zap"
+
 	"golang.org/x/tools/go/analysis"
 )
 
@@ -12,7 +15,10 @@ type Rule interface {
 }
 
 func Default() []Rule {
-	return nil
+	return []Rule{
+		slogrules.NewLowercaseStartRule(),
+		zaprules.NewLowercaseStartRule(),
+	}
 }
 
 func ApplyAll(pass *analysis.Pass, ruleSet []Rule, call *ast.CallExpr, message string) {
