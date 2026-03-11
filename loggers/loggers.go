@@ -59,6 +59,6 @@ func IsZapCall(pass *analysis.Pass, call *ast.CallExpr) bool {
 	return false
 }
 
-func ExtractStaticMessage(call *ast.CallExpr) (string, bool) {
+func ExtractStaticMessage(call *ast.CallExpr) (astx.ExtractedMessage, bool) {
 	return astx.ExtractStaticMessage(call)
 }
