@@ -31,6 +31,17 @@ func TestAnalyzer_EnglishOnlyRule(t *testing.T) {
 	)
 }
 
+func TestAnalyzer_NoSpecialCharsRule(t *testing.T) {
+	testdata := testdataPath(t)
+
+	analysistest.Run(
+		t,
+		testdata,
+		analyzer.Analyzer,
+		"special",
+	)
+}
+
 func testdataPath(t *testing.T) string {
 	abs, err := filepath.Abs(filepath.Join("..", "testdata"))
 	if err != nil {
