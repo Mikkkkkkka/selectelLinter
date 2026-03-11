@@ -2,12 +2,20 @@ package sensitive
 
 import "go.uber.org/zap"
 
-func ZapBad() {
+func ZapBadPassword() {
 	logger := zap.NewExample()
-	logger.Info("password reset started") // want "log message must not contain sensitive data"
+	password := "123"
+	logger.Info("user password " + password) // want "log message must not contain sensitive data"
 }
 
-func ZapBadSecret() {
+func ZapBadApi() {
 	logger := zap.NewExample()
-	logger.Info("secret key updated") // want "log message must not contain sensitive data"
+	apiKey := "123"
+	logger.Info("api key " + apiKey) // want "log message must not contain sensitive data"
+}
+
+func ZapBadToken() {
+	logger := zap.NewExample()
+	token := "scary_token"
+	logger.Info("token " + token) // want "log message must not contain sensitive data"
 }

@@ -2,6 +2,14 @@ package sensitive
 
 import "log/slog"
 
-func SlogGood() {
+func SlogGoodPassword() {
 	slog.Info("user authenticated successfully")
+}
+
+func SlogGoodApi() {
+	slog.Info("api request completed")
+}
+
+func SlogGoodToken() {
+	slog.Info("token validated")
 }

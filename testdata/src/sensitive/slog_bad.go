@@ -1,15 +1,20 @@
 package sensitive
 
-import "log/slog"
+import (
+	"log/slog"
+)
 
-func SlogBad() {
-	slog.Info("user password: 123") // want "log message must not contain sensitive data"
+func SlogBadPassword() {
+	password := "123"
+	slog.Info("user password " + password) // want "log message must not contain sensitive data"
 }
 
 func SlogBadAPIKey() {
-	slog.Info("api_key=abcd") // want "log message must not contain sensitive data"
+	apiKey := "123"
+	slog.Info("api key " + apiKey) // want "log message must not contain sensitive data"
 }
 
 func SlogBadToken() {
-	slog.Info("token: value") // want "log message must not contain sensitive data"
+	token := "scary_token"
+	slog.Info("token " + token) // want "log message must not contain sensitive data"
 }
