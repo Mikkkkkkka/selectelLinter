@@ -25,7 +25,7 @@ func (r *SlogRule) Check(pass *analysis.Pass, call *ast.CallExpr, message astx.E
 		return
 	}
 
-	if containsSensitive(message.Text) {
+	if containsSensitive(message.Vars) {
 		diagnostics.Report(pass, call.Lparen, "log message must not contain sensitive data")
 	}
 }
