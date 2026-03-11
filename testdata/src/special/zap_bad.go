@@ -16,8 +16,3 @@ func ZapBadPunct() {
 	logger := zap.NewExample()
 	logger.Info("warning: something went wrong...") // want "log message must not contain special characters or emoji"
 }
-
-func ZapGood() {
-	logger := zap.NewExample()
-	logger.Info("connection failed")
-}

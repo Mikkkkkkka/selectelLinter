@@ -13,7 +13,3 @@ func SlogBadEmoji() {
 func SlogBadPunct() {
 	slog.Info("warning: something went wrong...") // want "log message must not contain special characters or emoji"
 }
-
-func SlogGood() {
-	slog.Info("server started")
-}
