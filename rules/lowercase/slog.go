@@ -1,4 +1,4 @@
-package zaprules
+package lowercase
 
 import (
 	"go/ast"
@@ -12,18 +12,18 @@ import (
 	"golang.org/x/tools/go/analysis"
 )
 
-type LowercaseStartRule struct{}
+type SlogRule struct{}
 
-func NewLowercaseStartRule() *LowercaseStartRule {
-	return &LowercaseStartRule{}
+func NewSlogRule() *SlogRule {
+	return &SlogRule{}
 }
 
-func (r *LowercaseStartRule) Name() string {
-	return "zap-lowercase-start"
+func (r *SlogRule) Name() string {
+	return "slog-lowercase-start"
 }
 
-func (r *LowercaseStartRule) Check(pass *analysis.Pass, call *ast.CallExpr, message string) {
-	if !loggers.IsZapCall(pass, call) {
+func (r *SlogRule) Check(pass *analysis.Pass, call *ast.CallExpr, message string) {
+	if !loggers.IsSlogCall(pass, call) {
 		return
 	}
 
