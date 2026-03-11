@@ -6,6 +6,7 @@ import (
 	"unicode"
 	"unicode/utf8"
 
+	astx "selectelLinter/ast"
 	"selectelLinter/diagnostics"
 	"selectelLinter/loggers"
 
@@ -22,12 +23,12 @@ func (r *ZapRule) Name() string {
 	return "zap-lowercase-start"
 }
 
-func (r *ZapRule) Check(pass *analysis.Pass, call *ast.CallExpr, message string) {
+func (r *ZapRule) Check(pass *analysis.Pass, call *ast.CallExpr, message astx.ExtractedMessage) {
 	if !loggers.IsZapCall(pass, call) {
 		return
 	}
 
-	trimmed := strings.TrimLeftFunc(message, unicode.IsSpace)
+	trimmed := strings.TrimLeftFunc(message.Text, unicode.IsSpace)
 	if trimmed == "" {
 		return
 	}

@@ -4,6 +4,7 @@ import (
 	"go/ast"
 	"unicode"
 
+	astx "selectelLinter/ast"
 	"selectelLinter/diagnostics"
 	"selectelLinter/loggers"
 
@@ -20,12 +21,12 @@ func (r *SlogRule) Name() string {
 	return "slog-english-only"
 }
 
-func (r *SlogRule) Check(pass *analysis.Pass, call *ast.CallExpr, message string) {
+func (r *SlogRule) Check(pass *analysis.Pass, call *ast.CallExpr, message astx.ExtractedMessage) {
 	if !loggers.IsSlogCall(pass, call) {
 		return
 	}
 
-	for _, ch := range message {
+	for _, ch := range message.Text {
 		if !unicode.IsLetter(ch) {
 			continue
 		}

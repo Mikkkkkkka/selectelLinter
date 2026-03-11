@@ -3,6 +3,7 @@ package rules
 import (
 	"go/ast"
 
+	astx "selectelLinter/ast"
 	"selectelLinter/rules/english"
 	"selectelLinter/rules/lowercase"
 	"selectelLinter/rules/sensitive"
@@ -13,7 +14,7 @@ import (
 
 type Rule interface {
 	Name() string
-	Check(pass *analysis.Pass, call *ast.CallExpr, message string)
+	Check(pass *analysis.Pass, call *ast.CallExpr, message astx.ExtractedMessage)
 }
 
 func Default() []Rule {
@@ -29,7 +30,7 @@ func Default() []Rule {
 	}
 }
 
-func ApplyAll(pass *analysis.Pass, ruleSet []Rule, call *ast.CallExpr, message string) {
+func ApplyAll(pass *analysis.Pass, ruleSet []Rule, call *ast.CallExpr, message astx.ExtractedMessage) {
 	for _, rule := range ruleSet {
 		rule.Check(pass, call, message)
 	}

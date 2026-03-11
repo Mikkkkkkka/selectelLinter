@@ -6,6 +6,7 @@ import (
 	"unicode"
 	"unicode/utf8"
 
+	astx "selectelLinter/ast"
 	"selectelLinter/diagnostics"
 	"selectelLinter/loggers"
 
@@ -22,12 +23,12 @@ func (r *SlogRule) Name() string {
 	return "slog-lowercase-start"
 }
 
-func (r *SlogRule) Check(pass *analysis.Pass, call *ast.CallExpr, message string) {
+func (r *SlogRule) Check(pass *analysis.Pass, call *ast.CallExpr, message astx.ExtractedMessage) {
 	if !loggers.IsSlogCall(pass, call) {
 		return
 	}
 
-	trimmed := strings.TrimLeftFunc(message, unicode.IsSpace)
+	trimmed := strings.TrimLeftFunc(message.Text, unicode.IsSpace)
 	if trimmed == "" {
 		return
 	}
