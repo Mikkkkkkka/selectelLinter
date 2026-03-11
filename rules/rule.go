@@ -5,6 +5,7 @@ import (
 
 	"selectelLinter/rules/english"
 	"selectelLinter/rules/lowercase"
+	"selectelLinter/rules/sensitive"
 	"selectelLinter/rules/special"
 
 	"golang.org/x/tools/go/analysis"
@@ -23,6 +24,8 @@ func Default() []Rule {
 		english.NewZapRule(),
 		special.NewSlogRule(),
 		special.NewZapRule(),
+		sensitive.NewSlogRule(),
+		sensitive.NewZapRule(),
 	}
 }
 
